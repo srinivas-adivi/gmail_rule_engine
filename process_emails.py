@@ -44,7 +44,6 @@ def main(path_to_config='config.yaml', path_to_rules='rules.json'):
             print(f"{service_name}, {service_config}")
 
             provider = smm.provider.EmailServiceProvider(service_name, service_config)
-            email_service = provider.get_email_service()
 
         rules_info = read_rules(path_to_rules)
         if rules_info:
@@ -57,7 +56,8 @@ def main(path_to_config='config.yaml', path_to_rules='rules.json'):
 
                 print(f"{conditions_info}, \n {predicate}, \n{actions_info}")
 
-                conditions = [smm.rules_engine.Rule(**condition.model_dump()) for condition in conditions_info]
+                conditions = [smm.rules_engine.Rule(**condition.model_dump())
+                              for condition in conditions_info]
 
                 # Initialize RuleEngine
                 rule_engine = smm.rules_engine.RuleEngine(conditions, predicate)

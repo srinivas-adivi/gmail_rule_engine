@@ -8,27 +8,27 @@ import smm.database
 
 class EmailServiceProvider:
 
-    def __init__(self, service: str, config: dict):
-        self.service = service
+    def __init__(self, service_name: str, config: dict):
+        self.service_name = service_name
         self.config = config
 
     def get_email_service(self):
         services = {
             "gmail": smr.gmail_service.GmailService(self.config),
         }
-        if not self.service in services:
-            raise ValueError(f"Unsupported service: {self.service}")
+        if not self.service_name in services:
+            raise ValueError(f"Unsupported service: {self.service_name}")
 
-        return services.get(self.service)
+        return services.get(self.service_name)
 
     def get_payload_manager(self):
         services = {
             "gmail": smr.payload_manager.GmailPayloadManager(),
         }
-        if not self.service in services:
-            raise ValueError(f"Unsupported service: {self.service}")
+        if not self.service_name in services:
+            raise ValueError(f"Unsupported service: {self.service_name}")
 
-        return services.get(self.service)
+        return services.get(self.service_name)
 
     def get_rule_executor(self):
        service = self.get_email_service()
@@ -40,7 +40,7 @@ class DBProvider:
     @staticmethod
     def get_database(db_type: str, config: dict):
         db_factory = {
-            "sqlite": smm.database.SQLiteDatabase(config),
+            "sqlite": smm.database.SQLiteDatabase(),
         }
         if not db_type in db_factory:
             raise ValueError(f"Unsupported database type: {db_type}")
