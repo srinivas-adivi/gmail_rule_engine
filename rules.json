@@ -1,0 +1,23 @@
+{
+    "rules": [
+        {
+            "conditions": [
+                { "field": "From", "predicate": "contains", "value": "no-reply@plotch.ai" }
+            ],
+            "predicate": "All",
+            "actions": [
+                { "action": "Mark as Read" }
+            ]
+        },
+        {
+            "conditions": [
+                { "field": "From", "predicate": "contains", "value": "example.com" },
+                { "field": "Subject", "predicate": "equals", "value": "Important" }
+            ],
+            "predicate": "All",
+            "actions": [
+                { "action": "Mark as Unread" }
+            ]
+        }
+    ]
+}

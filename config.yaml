@@ -1,0 +1,13 @@
+db_config:
+  db_type: 'sqlite'
+  sqlite:
+    database: '/home/iksula/work/mail_rule_engine/emails.db'
+
+service_config:
+  provider: 'google'
+  service: 'gmail'
+  gmail:
+    path_to_credentials: '/home/iksula/work/mail_rule_engine/credentials.json'
+    path_to_token: '/home/iksula/work/mail_rule_engine/token.json'
+    scopes:
+      - 'https://www.googleapis.com/auth/gmail.modify'
